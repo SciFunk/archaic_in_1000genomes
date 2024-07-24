@@ -4,7 +4,7 @@ from collections import defaultdict
 import sys
 import gzip
 
-#dictionary to tie individual to population
+##dictionary to tie individual to population
 ppl_pop_dicc ={}
 with open('pop_locations.txt', "r") as f:
     poplabels = []
@@ -20,9 +20,11 @@ with open('pop_locations.txt', "r") as f:
 IDTable = pd.read_csv('rsIDallpops_insPrime.csv')
 posList = IDTable[['ID','arc_allele']].values.tolist()
 
+##list of population (abbreviations) in 1000 Genomes data
 poplist = ['LWK', 'GWD', 'MSL', 'YRI', 'ESN', 'ACB', 'ASW', "PEL", "MXL", "CLM", "PUR", "JPT", "CDX", "KHV", "CHB", "CHS", "FIN", "CEU", "GBR", "IBS", "TSI", "GIH", "ITU", "STU", "PJL", "BEB"]
 poptotals = defaultdict(int)
 
+##open each chromosome file and count allele frequency in each population
 with gzip.open(sys.argv[1], 'rt') as f:
     for _ in range(252):
         next(f)
